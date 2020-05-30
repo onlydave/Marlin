@@ -489,9 +489,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // E3D v6 (PT100, 30W)
-  #define  DEFAULT_Kp 35.59
-  #define  DEFAULT_Ki 3.56
-  #define  DEFAULT_Kd 88.91
+  #define  DEFAULT_Kp 25.60
+  #define  DEFAULT_Ki 3.30
+  #define  DEFAULT_Kd 65.33
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
@@ -746,7 +746,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 360, 1600, 304 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 180, 1600, 350 }
 
 /**
  * Default Max Feed Rate (mm/s)
