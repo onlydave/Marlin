@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Jet Townsend, Bigbox Dual Hybrid)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(OnlyDave, E3D Bigbox Single Extruder TMC2130)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -133,7 +133,7 @@
 
 // Name displayed in the LCD "Ready" message and Info menu
 //#define CUSTOM_MACHINE_NAME "3D Printer"
-#define CUSTOM_MACHINE_NAME "E3D BigBox 2.0.5.3"
+#define CUSTOM_MACHINE_NAME "E3D BigBox"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -580,8 +580,8 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-//#define EXTRUDE_MAXLENGTH 200
-#define EXTRUDE_MAXLENGTH (X_MAX_LENGTH+Y_MAX_LENGTH)
+#define EXTRUDE_MAXLENGTH 201
+// #define EXTRUDE_MAXLENGTH (X_MAX_LENGTH+Y_MAX_LENGTH)
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -977,7 +977,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 20
+#define MIN_PROBE_EDGE 25
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 3000
@@ -1157,12 +1157,14 @@
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  * By default the firmware assumes HIGH=FILAMENT PRESENT.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  #define FIL_RUNOUT_INVERTING false // Set to true to invert the logic of the sensor.
+  #define FIL_RUNOUT_INVERTING true // Set to true to invert the logic of the sensor.
   #define FIL_RUNOUT_PULLUP          // Use internal pullup for filament runout pins.
   //#define FIL_RUNOUT_PULLDOWN      // Use internal pulldown for filament runout pins.
+  
+  #define FIL_RUNOUT_PIN 32
 
   // Set one or more commands to execute on filament runout.
   // (After 'M412 H' Marlin will ask the host to handle the process.)
@@ -1511,11 +1513,11 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MIN_POS + 10), 20 }
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
   #define NOZZLE_PARK_Z_FEEDRATE 5      // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
@@ -1673,7 +1675,7 @@
  * you must uncomment the following option or it won't work.
  *
  */
-//#define SDSUPPORT
+#define SDSUPPORT
 
 /**
  * SD CARD: SPI SPEED
@@ -1713,7 +1715,7 @@
 // Use this option to override the number of step signals required to
 // move between next/prev menu items.
 //
-#define ENCODER_STEPS_PER_MENU_ITEM 4
+#define ENCODER_STEPS_PER_MENU_ITEM 5
 
 /**
  * Encoder Direction Options
@@ -1730,7 +1732,7 @@
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-//#define REVERSE_ENCODER_DIRECTION
+#define REVERSE_ENCODER_DIRECTION
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
@@ -1738,7 +1740,7 @@
 //  If CLOCKWISE normally moves DOWN this makes it go UP.
 //  If CLOCKWISE normally moves UP this makes it go DOWN.
 //
-#define REVERSE_MENU_DIRECTION
+// #define REVERSE_MENU_DIRECTION
 
 //
 // This option reverses the encoder direction for Select Screen.
@@ -1841,9 +1843,9 @@
 //
 #define ULTRA_LCD
 #define DOGLCD
-#define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
-#define ST7920_DELAY_2 DELAY_NS(400) // after DAT
-#define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
+// #define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
+// #define ST7920_DELAY_2 DELAY_NS(400) // after DAT
+// #define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
 
 
 //=============================================================================
